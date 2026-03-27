@@ -1,0 +1,180 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram name="Arquitectura AsisTec Facial" id="0">
+    <mxGraphModel dx="2846" dy="756" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;" value="Diseño Arquitectónico — AsisTec Facial" vertex="1">
+          <mxGeometry height="50" width="760" x="420" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c_front" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="700" width="420" x="-200" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="tD244kT7O9fDNdfFiwTQ-1" edge="1" parent="1" source="c_back" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="be_sched">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_back" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="700" width="680" x="520" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="c_data" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="750" width="420" x="1380" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="fe_login" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=16;" value="Login / Acceso (Docente • Alumno)" vertex="1">
+          <mxGeometry height="70" width="360" x="-170" y="178" as="geometry" />
+        </mxCell>
+        <mxCell id="fe_reg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=16;" value="Registro de Usuario + Alta de datos" vertex="1">
+          <mxGeometry height="70" width="360" x="-170" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="fe_facecap" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=16;" value="Captura de Rostro (Cámara Web)" vertex="1">
+          <mxGeometry height="70" width="360" x="-170" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="fe_att" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=16;" value="Registro de Asistencia (Entrada)" vertex="1">
+          <mxGeometry height="70" width="360" x="-170" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="fe_dash" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=16;" value="Panel Docente (Reportes / Asistencias)" vertex="1">
+          <mxGeometry height="70" width="360" x="-170" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="be_auth" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=15;" value="Autenticación y Roles JWT / Sesiones" vertex="1">
+          <mxGeometry height="78" width="240" x="560" y="178" as="geometry" />
+        </mxCell>
+        <mxCell id="be_users" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=15;" value="Gestión de Usuarios Docente / Alumno" vertex="1">
+          <mxGeometry height="78" width="240" x="870" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="be_sched" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=14;" value="Gestión de Horarios Clases / Materias" vertex="1">
+          <mxGeometry height="78" width="240" x="530" y="282" as="geometry" />
+        </mxCell>
+        <mxCell id="be_att" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=15;" value="Módulo de Asistencia Registrar / Consultar" vertex="1">
+          <mxGeometry height="78" width="240" x="950" y="282" as="geometry" />
+        </mxCell>
+        <mxCell id="be_rules" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=14;" value="Motor de Reglas Tolerancia 10 min" vertex="1">
+          <mxGeometry height="78" width="240" x="530" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="be_just" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=15;" value="Justificantes y Evidencias Subir / Revisar" vertex="1">
+          <mxGeometry height="78" width="240" x="950" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="be_notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=15;" value="Notificaciones Advertencia por tardanza" vertex="1">
+          <mxGeometry height="78" width="240" x="590" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="be_reports" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=15;" value="Reportes Por fecha / grupo" vertex="1">
+          <mxGeometry height="78" width="240" x="840" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="be_face" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=15;" value="Servicio de Reconocimiento Facial Comparación / Match" vertex="1">
+          <mxGeometry height="90" width="490" x="580" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="db_pg" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;fontSize=16;" value="PostgreSQL (Usuarios • Horarios • Asistencias • Advertencias)" vertex="1">
+          <mxGeometry height="190" width="300" x="1470" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="store_files" parent="1" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=16;" value="Almacenamiento de Archivos (Justificantes)" vertex="1">
+          <mxGeometry height="110" width="300" x="1430" y="478" as="geometry" />
+        </mxCell>
+        <mxCell id="log_audit" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=15;" value="Logs / Auditoría (Accesos y eventos)" vertex="1">
+          <mxGeometry height="110" width="300" x="1430" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="fe_login" style="endArrow=block;html=1;rounded=1;fontSize=13;" target="be_auth" value="HTTPS / REST (JSON) /login">
+          <mxGeometry relative="1" x="0.0354" y="19" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="fe_reg" style="endArrow=block;html=1;rounded=1;fontSize=13;" target="be_users" value="HTTPS / REST (JSON) /usuarios">
+          <mxGeometry relative="1" x="-0.4896" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="fe_facecap" style="endArrow=block;html=1;rounded=1;fontSize=14;" target="be_face" value="HTTPS / REST (JSON) /rostro">
+          <mxGeometry relative="1" x="0.7862" y="40" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="fe_att" style="endArrow=block;html=1;rounded=1;fontSize=14;" target="be_att" value="HTTPS / REST (JSON) /asistencia">
+          <mxGeometry relative="1" x="-0.177" y="20" as="geometry">
+            <mxPoint x="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="470" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="fe_dash" style="endArrow=block;html=1;rounded=1;fontSize=13;" target="be_reports" value="HTTPS / REST (JSON) /reportes">
+          <mxGeometry relative="1" x="-0.5768" y="-22" as="geometry">
+            <mxPoint x="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="800" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="be_att" style="endArrow=block;html=1;rounded=1;dashed=1;fontSize=13;" target="be_sched" value="Verifica horario">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="be_att" style="endArrow=block;html=1;rounded=1;dashed=1;fontSize=15;" target="be_rules" value="Aplica reglas (10 min)">
+          <mxGeometry relative="1" x="-0.1185" y="35" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="840" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="be_rules" style="endArrow=block;html=1;rounded=1;dashed=1;fontSize=15;" target="be_notif" value="Genera advertencia">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="be_rules" style="endArrow=block;html=1;rounded=1;dashed=1;fontSize=15;" target="be_just" value="Si tarde: solicita justificante">
+          <mxGeometry relative="1" x="-0.1563" y="-36" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="be_face" style="endArrow=block;html=1;rounded=1;dashed=1;fontSize=15;" target="be_att" value="Resultado match/no match">
+          <mxGeometry relative="1" x="0.2782" y="-70" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="be_users" style="endArrow=block;html=1;rounded=1;" target="db_pg" value="SQL / ORM CRUD">
+          <mxGeometry relative="1" x="0.0348" y="36" as="geometry">
+            <mxPoint x="1" as="offset" />
+            <Array as="points">
+              <mxPoint x="1270" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="be_sched" style="endArrow=block;html=1;rounded=1;fontSize=13;" target="db_pg" value="SQL / ORM CRUD">
+          <mxGeometry relative="1" x="0.4283" y="22" as="geometry">
+            <mxPoint x="1" as="offset" />
+            <Array as="points">
+              <mxPoint x="930" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="be_att" style="endArrow=block;html=1;rounded=1;fontSize=13;" target="db_pg" value="SQL / ORM INSERT/SELECT">
+          <mxGeometry relative="1" x="-0.2235" y="34" as="geometry">
+            <mxPoint x="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="1270" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="be_just" style="endArrow=block;html=1;rounded=1;fontSize=15;" target="store_files" value="Guardar / leer archivos">
+          <mxGeometry relative="1" x="0.3095" y="32" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1280" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="be_auth" style="endArrow=block;html=1;rounded=1;dashed=1;fontSize=15;" target="log_audit" value="Eventos / logs">
+          <mxGeometry relative="1" x="0.4396" y="-22" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note_tol" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#999;dashed=1;fontSize=15;" value="Regla de negocio: • 0–10 min = A tiempo • &amp;gt;10 min = Tarde (Advertencia) • Tarde requiere justificante para evitar falta" vertex="1">
+          <mxGeometry height="120" width="420" x="1380" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="tD244kT7O9fDNdfFiwTQ-2" parent="1" style="whiteSpace=wrap;html=1;fontSize=18;fillColor=#fff2cc;strokeColor=#d6b656;" value="CAPA 2 — Backend (API / Servidor)" vertex="1">
+          <mxGeometry height="60" width="310" x="705" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="tD244kT7O9fDNdfFiwTQ-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#82b366;fillColor=#d5e8d4;align=center;verticalAlign=middle;rounded=0;fontSize=18;" value="CAPA 3 — Datos / Persistencia" vertex="1">
+          <mxGeometry height="50" width="300" x="1450" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tD244kT7O9fDNdfFiwTQ-4" parent="1" style="whiteSpace=wrap;html=1;fontSize=17;" value="CAPA 1 — Frontend (Cliente Web)" vertex="1">
+          <mxGeometry height="70" width="330" x="-160" y="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
