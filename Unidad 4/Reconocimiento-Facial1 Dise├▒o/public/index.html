@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reconocimiento Facial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-id-card me-2"></i>
+                Sistema de Reconocimiento Facial
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown" id="userMenu">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-2"></i><span id="userName"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="#" id="verPerfil">
+                                    <i class="fas fa-user-circle me-2"></i>Ver Perfil
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="editarPerfil">
+                                    <i class="fas fa-user-edit me-2"></i>Editar Perfil
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="cerrarSesion">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown" id="configMenu" style="display: none;">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-cog me-2"></i>Configuraciones
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#" id="departamentosConfig">
+                                    <i class="fas fa-building me-2"></i>Departamentos
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="empresaConfig">
+                                    <i class="fas fa-cogs me-2"></i>Configuración de Empresa
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="usuariosConfig">
+                                    <i class="fas fa-users me-2"></i>Gestión de Usuarios
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="usuariosAccesoConfig">
+                                    <i class="fas fa-user-shield me-2"></i>Usuarios de Acceso
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown" id="reportMenu" style="display: none;">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="reportDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-chart-bar me-2"></i>Reportes
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reportDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#" id="informeDiario">
+                                    <i class="fas fa-calendar-day me-2"></i>Informe Diario
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="reporteDepartamento">
+                                    <i class="fas fa-building me-2"></i>Asistencia por Departamento
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="reportePuntualidad">
+                                    <i class="fas fa-clock me-2"></i>Reporte de Puntualidad
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="reporteHoras">
+                                    <i class="fas fa-hourglass-half me-2"></i>Horas Trabajadas
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown" id="soporteMenu" style="display: none;">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="soporteDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-headset me-2"></i>Soporte
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="soporteDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#" id="qrAcceso">
+                                    <i class="fas fa-qrcode me-2"></i>QR de Acceso
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="faqSoporte">
+                                    <i class="fas fa-question-circle me-2"></i>Preguntas Frecuentes
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="contactoWhatsapp">
+                                    <i class="fab fa-whatsapp me-2"></i>Contáctenos
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="suscripciones">
+                            <i class="fas fa-crown"></i> Suscripciones
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div id="empresa-selection" class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Selección de Empresa</h2>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" id="searchEmpresa" class="form-control" placeholder="Buscar empresa...">
+                        </div>
+                        <select id="empresaSelect" class="form-select mb-3">
+                            <!-- Empresas serán cargadas aquí -->
+                        </select>
+                        <button id="selectEmpresa" class="btn btn-primary w-100">
+                            <i class="fas fa-check-circle me-2"></i>Seleccionar Empresa
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-message" class="loading-container" style="display: none;">
+        <div class="scanning-interface">
+            <div class="scan-area">
+                <div class="scan-outline">
+                    <div class="corner-tl"></div>
+                    <div class="corner-tr"></div>
+                    <div class="corner-bl"></div>
+                    <div class="corner-br"></div>
+                    <div class="scanning-line"></div>
+                    <div class="scan-points">
+                        <div class="point p1"></div>
+                        <div class="point p2"></div>
+                        <div class="point p3"></div>
+                        <div class="point p4"></div>
+                        <div class="point p5"></div>
+                        <div class="point p6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="loading-text">
+            <div class="status-text">Procesando datos biométricos</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content" class="container mt-4" style="display: none;">
+        <ul class="nav nav-pills nav-fill mb-3" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="reconocimiento-tab" data-bs-toggle="pill" data-bs-target="#reconocimiento" type="button" role="tab" aria-controls="reconocimiento" aria-selected="true">
+                    <i class="fas fa-camera me-2"></i>Reconocimiento Facial
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="registro-tab" data-bs-toggle="pill" data-bs-target="#registro" type="button" role="tab" aria-controls="registro" aria-selected="false">
+                    <i class="fas fa-user-plus me-2"></i>Registro de Usuario
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="reconocimiento" role="tabpanel" aria-labelledby="reconocimiento-tab">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="recognition-header mb-4">
+                            <div class="recognition-icon">
+                                <i class="fas fa-camera-retro"></i>
+                            </div>
+                            <h2 class="recognition-title">Reconocimiento Facial</h2>
+                            <p class="recognition-subtitle">Sistema de identificación biométrica</p>
+                        </div>
+                        <div id="camera" class="camera-container mb-4 position-relative">
+                            <div class="camera-overlay">
+                                <div class="corner-tl"></div>
+                                <div class="corner-tr"></div>
+                                <div class="corner-bl"></div>
+                                <div class="corner-br"></div>
+                            </div>
+                            <video id="video" class="w-100" autoplay muted></video>
+                            <div id="registro-status" class="alert alert-primary text-center"></div>
+                        </div>
+                        <div id="recognition-result" class="alert alert-info mb-3" style="display: none;"></div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <button id="entrada-btn" class="btn btn-primary btn-lg flex-grow-1 me-2 recognition-btn">
+                                <i class="fas fa-sign-in-alt me-2"></i>Registrar Entrada
+                            </button>
+                            <button id="salida-btn" class="btn btn-secondary btn-lg flex-grow-1 recognition-btn">
+                                <i class="fas fa-sign-out-alt me-2"></i>Registrar Salida
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="registro" role="tabpanel" aria-labelledby="registro-tab">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="registration-header mb-4">
+                            <div class="registration-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h2 class="registration-title">Registro de Usuario</h2>
+                            <p class="registration-subtitle">Ingresa los datos del nuevo usuario</p>
+                        </div>
+                        <form id="user-form" enctype="multipart/form-data" class="modern-form">
+                            <div class="form-floating mb-3">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" required>
+                                <label for="name"><i class="fas fa-user me-2"></i>Nombre</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" id="cedula" name="cedula" class="form-control" placeholder="Cédula" required>
+                                <label for="cedula"><i class="fas fa-id-card me-2"></i>Cédula</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select id="cargo" name="cargo" class="form-select" required>
+                                    <option value="">Seleccione un departamento</option>
+                                </select>
+                                <label for="cargo"><i class="fas fa-building me-2"></i>Departamento</label>
+                            </div>
+                            <div class="photo-upload-section mb-4">
+                                <label class="photo-label">Foto del Usuario</label>
+                                <div class="photo-options">
+                                    <button type="button" id="takePhotoBtn" class="btn btn-primary photo-btn">
+                                        <i class="fas fa-camera me-2"></i>
+                                        <span>Tomar Foto</span>
+                                    </button>
+                                    <div class="photo-upload-btn">
+                                        <input type="file" id="photo" name="photo" class="form-control" accept="image/*" style="display: none;">
+                                        <label for="photo" class="btn btn-secondary">
+                                            <i class="fas fa-upload me-2"></i>
+                                            <span>Subir Foto</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="photoPreview" class="mt-3 text-center" style="display: none;">
+                                    <div class="preview-container">
+                                        <img id="previewImage" src="" alt="Vista previa de la foto" class="img-fluid rounded">
+                                        <button type="button" id="cancelPhotoBtn" class="btn btn-danger cancel-photo">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit-button" class="btn btn-success w-100 submit-btn">
+                                <i class="fas fa-user-plus me-2"></i>Registrar Usuario
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de Configuración de Empresa -->
+    <div id="empresa-config" class="container mt-4" style="display: none;">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">
+                    <i class="fas fa-building me-2"></i>Configuración de Empresa
+                </h3>
+                <button class="btn btn-light" id="volverHomeEmpresa">
+                    <i class="fas fa-home me-2"></i>Volver al Inicio
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="alert alert-info d-flex align-items-center">
+                            <i class="fas fa-info-circle me-2 fa-lg"></i>
+                            <div>
+                                Configure la información básica de su empresa. Estos datos serán utilizados en reportes y documentos generados por el sistema.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form id="empresaForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="nombreEmpresa" placeholder="Nombre de la Empresa" required>
+                                <label for="nombreEmpresa">
+                                    <i class="fas fa-building me-2"></i>Nombre de la Empresa
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="nitEmpresa" placeholder="NIT" required>
+                                <label for="nitEmpresa">
+                                    <i class="fas fa-id-card me-2"></i>NIT
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="tel" class="form-control" id="telefonoEmpresa" placeholder="Teléfono">
+                                <label for="telefonoEmpresa">
+                                    <i class="fas fa-phone me-2"></i>Teléfono
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="correoEmpresa" placeholder="Correo Electrónico">
+                                <label for="correoEmpresa">
+                                    <i class="fas fa-envelope me-2"></i>Correo Electrónico
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <textarea class="form-control" id="direccionEmpresa" rows="3" style="height: 100px" placeholder="Dirección"></textarea>
+                            <label for="direccionEmpresa">
+                                <i class="fas fa-map-marker-alt me-2"></i>Dirección
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-outline-secondary" id="cancelarEmpresa">
+                                    <i class="fas fa-times me-2"></i>Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i>Guardar Cambios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de Configuración de Departamentos -->
+    <div id="departamentos-config" class="container mt-4" style="display: none;">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">
+                    <i class="fas fa-building me-2"></i>Gestión de Departamentos
+                </h3>
+                <button class="btn btn-light" id="nuevoDepartamento">
+                    <i class="fas fa-plus me-2"></i>Nuevo Departamento
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Departamento</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sábado</th>
+                                <th>Domingo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="departamentosTableBody">
+                            <!-- Los departamentos se cargarán dinámicamente aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Crear/Editar Departamento -->
+    <div class="modal fade" id="departamentoModal" tabindex="-1" aria-labelledby="departamentoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="departamentoModalLabel">
+                        <i class="fas fa-building me-2"></i>
+                        <span id="modalTitle">Nuevo Departamento</span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="departamentoForm">
+                        <div class="mb-3">
+                            <label for="nombreDepartamento" class="form-label">Nombre del Departamento</label>
+                            <input type="text" class="form-control" id="nombreDepartamento" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <h6 class="mb-3">Horarios de Entrada</h6>
+                                <div class="mb-2">
+                                    <label class="form-label">Lunes</label>
+                                    <input type="time" class="form-control" id="lunesEntrada">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Martes</label>
+                                    <input type="time" class="form-control" id="martesEntrada">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Miércoles</label>
+                                    <input type="time" class="form-control" id="miercolesEntrada">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Jueves</label>
+                                    <input type="time" class="form-control" id="juevesEntrada">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Viernes</label>
+                                    <input type="time" class="form-control" id="viernesEntrada">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Sábado</label>
+                                    <input type="time" class="form-control" id="sabadoEntrada">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Domingo</label>
+                                    <input type="time" class="form-control" id="domingoEntrada">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="mb-3">Horarios de Salida</h6>
+                                <div class="mb-2">
+                                    <label class="form-label">Lunes</label>
+                                    <input type="time" class="form-control" id="lunesSalida">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Martes</label>
+                                    <input type="time" class="form-control" id="martesSalida">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Miércoles</label>
+                                    <input type="time" class="form-control" id="miercolesSalida">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Jueves</label>
+                                    <input type="time" class="form-control" id="juevesSalida">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Viernes</label>
+                                    <input type="time" class="form-control" id="viernesSalida">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Sábado</label>
+                                    <input type="time" class="form-control" id="sabadoSalida">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Domingo</label>
+                                    <input type="time" class="form-control" id="domingoSalida">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary" id="guardarDepartamento">
+                        <i class="fas fa-save me-2"></i>Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de Configuración de Usuarios -->
+    <div id="usuarios-config" class="container mt-4" style="display: none;">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">
+                    <i class="fas fa-users me-2"></i>Gestión de Usuarios
+                </h3>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-light" id="importarUsuarios">
+                        <i class="fas fa-file-import me-2"></i>Importar Usuarios
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Buscador moderno -->
+                <div class="search-container mb-4">
+                    <div class="position-relative">
+                        <input type="text" id="searchUsuarios" class="form-control form-control-lg ps-5" 
+                               placeholder="Buscar usuarios por nombre, cédula o departamento...">
+                        <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>Cédula</th>
+                                <th>Departamento</th>
+                                <th>Última Actualización</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usuariosTableBody">
+                            <!-- Los usuarios se cargarán dinámicamente aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Paginación -->
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div class="entries-info text-muted">
+                        Mostrando <span id="showing-entries">0</span> de <span id="total-entries">0</span> usuarios
+                    </div>
+                    <div class="pagination-container">
+                        <div class="btn-group" role="group" aria-label="Paginación">
+                            <button type="button" class="btn btn-outline-primary" id="prevPage">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="btn-group mx-2" id="pageNumbers">
+                                <!-- Los números de página se generarán dinámicamente -->
+                            </div>
+                            <button type="button" class="btn btn-outline-primary" id="nextPage">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Usuario -->
+    <div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editarUsuarioModalLabel">
+                        <i class="fas fa-user-edit me-2"></i>Editar Usuario
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editarUsuarioForm">
+                        <input type="hidden" id="editUsuarioId">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="editNombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="editNombre" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editCedula" class="form-label">Cédula</label>
+                                    <input type="text" class="form-control" id="editCedula" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editCargo" class="form-label">Departamento</label>
+                                    <select class="form-select" id="editCargo" required>
+                                        <!-- Los departamentos se cargarán dinámicamente -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Foto Actual</label>
+                                    <div class="text-center">
+                                        <img id="editPhotoPreview" src="" alt="Foto actual" class="img-fluid rounded mb-2" style="max-height: 200px;">
+                                    </div>
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button type="button" class="btn btn-primary" id="editTakePhotoBtn">
+                                            <i class="fas fa-camera me-2"></i>Tomar Foto
+                                        </button>
+                                        <label class="btn btn-secondary mb-0">
+                                            <i class="fas fa-upload me-2"></i>Subir Foto
+                                            <input type="file" id="editPhotoInput" accept="image/*" style="display: none;">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary" id="guardarUsuarioBtn">
+                        <i class="fas fa-save me-2"></i>Guardar Cambios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Cámara para Edición -->
+    <div class="modal fade" id="editCameraModal" tabindex="-1" aria-labelledby="editCameraModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editCameraModalLabel">Tomar Nueva Foto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <video id="editCameraFeed" autoplay playsinline class="w-100"></video>
+                    <canvas id="editPhotoCanvas" style="display:none;"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="editCapturePhotoBtn">Capturar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón de retorno -->
+    <a href="#" class="btn-return" id="btnReturn" style="display: none;">
+        <i class="fas fa-home"></i>
+    </a>
+
+    <!-- Contenedor de notificaciones -->
+    <div id="notificationContainer"></div>
+
+    <!-- Contenedor de Reportes -->
+    <div id="reportes-container" class="container mt-4" style="display: none;">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0" id="reporte-titulo">
+                    <i class="fas fa-chart-bar me-2"></i>Reportes
+                </h3>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-light" id="exportarReporte">
+                        <i class="fas fa-file-export me-2"></i>Exportar
+                    </button>
+                    <button class="btn btn-light" id="imprimirReporte">
+                        <i class="fas fa-print me-2"></i>Imprimir
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Filtros -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="fechaInicio">Fecha Inicio</label>
+                            <input type="date" class="form-control" id="fechaInicio">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="fechaFin">Fecha Fin</label>
+                            <input type="date" class="form-control" id="fechaFin">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="departamentoFiltro">Departamento</label>
+                            <select class="form-select" id="departamentoFiltro">
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button class="btn btn-primary w-100" id="generarReporte">
+                                <i class="fas fa-sync-alt me-2"></i>Generar Reporte
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor de Gráficos -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="grafico1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="grafico2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla de Datos -->
+                <div class="table-responsive">
+                    <table class="table table-hover" id="tablaReporte">
+                        <thead class="table-light">
+                            <tr>
+                                <!-- Las columnas se generarán dinámicamente -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Los datos se generarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Paginación -->
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div class="entries-info text-muted">
+                        Mostrando <span id="showing-entries-reporte">0</span> de <span id="total-entries-reporte">0</span> registros
+                    </div>
+                    <div class="pagination-container">
+                        <div class="btn-group" role="group" aria-label="Paginación">
+                            <button type="button" class="btn btn-outline-primary" id="prevPageReporte">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="btn-group mx-2" id="pageNumbersReporte">
+                                <!-- Los números de página se generarán dinámicamente -->
+                            </div>
+                            <button type="button" class="btn btn-outline-primary" id="nextPageReporte">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor para el QR de Acceso -->
+    <div id="qr-acceso-container" class="container mt-4" style="display: none;">
+        <div class="card shadow">
+            <div class="card-body text-center">
+                <h2 class="card-title mb-4">
+                    <i class="fas fa-qrcode me-2"></i>QR de Acceso al Sistema
+                </h2>
+                <p class="card-text mb-4">
+                    Escanee este código QR para acceder al sistema desde cualquier dispositivo en la misma red.
+                </p>
+                <div id="qrcode" class="mb-4 d-flex justify-content-center"></div>
+                <div class="url-container mb-4">
+                    <p class="mb-2">URL del sistema:</p>
+                    <code id="url-text" class="p-2 bg-light rounded"></code>
+                </div>
+                <button id="volverHomeQR" class="btn btn-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver al Inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor para FAQ -->
+    <div id="faq-container" class="container mt-4" style="display: none;">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">
+                    <i class="fas fa-question-circle me-2"></i>Preguntas Frecuentes
+                </h3>
+                <button class="btn btn-light" id="volverHomeFaq">
+                    <i class="fas fa-home me-2"></i>Volver al Inicio
+                </button>
+            </div>
+            <div class="card-body">
+                <!-- Buscador de FAQ -->
+                <div class="search-container mb-4">
+                    <div class="position-relative">
+                        <input type="text" id="searchFaq" class="form-control form-control-lg ps-5" 
+                               placeholder="Buscar preguntas frecuentes...">
+                        <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                    </div>
+                </div>
+
+                <!-- Categorías de FAQ -->
+                <div class="faq-categories mb-4">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <div class="faq-category-card" data-category="general">
+                                <div class="category-icon">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <h5>General</h5>
+                                <span class="category-count">5 preguntas</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="faq-category-card" data-category="reconocimiento">
+                                <div class="category-icon">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <h5>Reconocimiento Facial</h5>
+                                <span class="category-count">4 preguntas</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="faq-category-card" data-category="registro">
+                                <div class="category-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h5>Registro de Usuarios</h5>
+                                <span class="category-count">6 preguntas</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="faq-category-card" data-category="reportes">
+                                <div class="category-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h5>Reportes</h5>
+                                <span class="category-count">4 preguntas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acordeón de preguntas -->
+                <div class="accordion" id="faqAccordion">
+                    <!-- General -->
+                    <div class="faq-section" data-category="general">
+                        <h4 class="section-title"><i class="fas fa-home me-2"></i>Preguntas Generales</h4>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    ¿Cómo funciona el sistema de reconocimiento facial?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    El sistema utiliza tecnología de reconocimiento facial avanzada para identificar a los empleados. 
+                                    Captura la imagen facial a través de la cámara y la compara con la base de datos de empleados registrados 
+                                    para registrar entradas y salidas de manera segura y eficiente.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    ¿Qué navegadores son compatibles con el sistema?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    El sistema es compatible con los principales navegadores modernos como Google Chrome, Mozilla Firefox, 
+                                    Microsoft Edge y Safari en sus últimas versiones. Para un mejor rendimiento, recomendamos usar Google Chrome.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqG3">
+                                    ¿El sistema funciona sin conexión a internet?
+                                </button>
+                            </h2>
+                            <div id="faqG3" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    El sistema requiere una conexión a internet para funcionar correctamente, ya que necesita acceder a la base de datos 
+                                    y mantener sincronizados los registros. Sin embargo, opera en la red local de la empresa, lo que garantiza mayor 
+                                    seguridad y velocidad.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqG4">
+                                    ¿Cómo puedo obtener soporte técnico?
+                                </button>
+                            </h2>
+                            <div id="faqG4" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Puede obtener soporte técnico de varias formas:
+                                    <ul>
+                                        <li>A través del botón de "Contáctenos" en el menú de soporte</li>
+                                        <li>Enviando un correo a ciscodedeveloper@gmail.com</li>
+                                        <li>Consultando esta sección de FAQ</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqG5">
+                                    ¿Los datos están seguros en el sistema?
+                                </button>
+                            </h2>
+                            <div id="faqG5" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Sí, el sistema implementa múltiples capas de seguridad:
+                                    <ul>
+                                        <li>Conexión HTTPS encriptada</li>
+                                        <li>Almacenamiento seguro de datos biométricos</li>
+                                        <li>Backups automáticos</li>
+                                        <li>Control de acceso por roles</li>
+                                        <li>Registro de todas las operaciones</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reconocimiento Facial -->
+                    <div class="faq-section" data-category="reconocimiento">
+                        <h4 class="section-title"><i class="fas fa-camera me-2"></i>Reconocimiento Facial</h4>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqR1">
+                                    ¿Qué hago si el sistema no me reconoce?
+                                </button>
+                            </h2>
+                            <div id="faqR1" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Si el sistema no te reconoce, asegúrate de:
+                                    <ul>
+                                        <li>Tener buena iluminación</li>
+                                        <li>Estar mirando directamente a la cámara</li>
+                                        <li>No usar accesorios que cubran el rostro</li>
+                                        <li>Actualizar tu foto de registro si ha habido cambios significativos en tu apariencia</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqR2">
+                                    ¿Cuánto tiempo tarda el reconocimiento?
+                                </button>
+                            </h2>
+                            <div id="faqR2" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    El reconocimiento facial es casi instantáneo, generalmente toma entre 1-3 segundos. 
+                                    Este tiempo puede variar según:
+                                    <ul>
+                                        <li>La calidad de la cámara</li>
+                                        <li>La iluminación del ambiente</li>
+                                        <li>La velocidad de la conexión</li>
+                                        <li>El número de usuarios registrados</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqR3">
+                                    ¿Funciona con mascarilla?
+                                </button>
+                            </h2>
+                            <div id="faqR3" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Por razones de seguridad y precisión, el sistema no está diseñado para funcionar con mascarillas 
+                                    u otros elementos que cubran parcialmente el rostro. Es necesario tener el rostro completamente 
+                                    visible para un reconocimiento exitoso.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqR4">
+                                    ¿Qué requisitos técnicos necesita la cámara?
+                                </button>
+                            </h2>
+                            <div id="faqR4" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Para un óptimo funcionamiento, la cámara debe cumplir con:
+                                    <ul>
+                                        <li>Resolución mínima de 720p (1280x720)</li>
+                                        <li>Buena calidad en condiciones de baja luz</li>
+                                        <li>Enfoque automático</li>
+                                        <li>Compatibilidad con WebRTC</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Registro de Usuarios -->
+                    <div class="faq-section" data-category="registro">
+                        <h4 class="section-title"><i class="fas fa-user-plus me-2"></i>Registro de Usuarios</h4>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqU1">
+                                    ¿Cómo registro un nuevo usuario?
+                                </button>
+                            </h2>
+                            <div id="faqU1" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Para registrar un nuevo usuario:
+                                    <ol>
+                                        <li>Ve a la pestaña "Registro de Usuario"</li>
+                                        <li>Completa los campos requeridos (nombre, cédula, departamento)</li>
+                                        <li>Toma una foto o sube una imagen del usuario</li>
+                                        <li>Haz clic en "Registrar Usuario"</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqU2">
+                                    ¿Cómo actualizo la foto de un usuario?
+                                </button>
+                            </h2>
+                            <div id="faqU2" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Para actualizar la foto:
+                                    <ol>
+                                        <li>Ve a "Gestión de Usuarios" en el menú de configuración</li>
+                                        <li>Busca al usuario que deseas actualizar</li>
+                                        <li>Haz clic en el botón de editar</li>
+                                        <li>Selecciona "Tomar Foto" o "Subir Foto"</li>
+                                        <li>Guarda los cambios</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqU3">
+                                    ¿Puedo importar varios usuarios a la vez?
+                                </button>
+                            </h2>
+                            <div id="faqU3" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Sí, el sistema permite la importación masiva de usuarios:
+                                    <ol>
+                                        <li>Ve a "Gestión de Usuarios"</li>
+                                        <li>Haz clic en "Importar Usuarios"</li>
+                                        <li>Descarga la plantilla Excel</li>
+                                        <li>Completa la información en la plantilla</li>
+                                        <li>Prepara las fotos en una carpeta</li>
+                                        <li>Sube la plantilla y las fotos</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqU4">
+                                    ¿Qué formato deben tener las fotos?
+                                </button>
+                            </h2>
+                            <div id="faqU4" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Las fotos deben cumplir con los siguientes requisitos:
+                                    <ul>
+                                        <li>Formato: JPG o PNG</li>
+                                        <li>Tamaño máximo: 5MB</li>
+                                        <li>Resolución mínima: 640x480 píxeles</li>
+                                        <li>El rostro debe ser claramente visible</li>
+                                        <li>Fondo preferiblemente claro y uniforme</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqU5">
+                                    ¿Cómo elimino un usuario?
+                                </button>
+                            </h2>
+                            <div id="faqU5" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Para eliminar un usuario:
+                                    <ol>
+                                        <li>Ve a "Gestión de Usuarios"</li>
+                                        <li>Busca al usuario que deseas eliminar</li>
+                                        <li>Haz clic en el botón de eliminar (ícono de papelera)</li>
+                                        <li>Confirma la eliminación</li>
+                                    </ol>
+                                    <strong>Nota:</strong> Esta acción no se puede deshacer y eliminará todo el historial 
+                                    de asistencia asociado al usuario.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqU6">
+                                    ¿Puedo cambiar el departamento de un usuario?
+                                </button>
+                            </h2>
+                            <div id="faqU6" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Sí, para cambiar el departamento:
+                                    <ol>
+                                        <li>Ve a "Gestión de Usuarios"</li>
+                                        <li>Busca al usuario</li>
+                                        <li>Haz clic en editar</li>
+                                        <li>Selecciona el nuevo departamento</li>
+                                        <li>Guarda los cambios</li>
+                                    </ol>
+                                    <strong>Nota:</strong> El cambio de departamento afectará a los futuros registros 
+                                    de asistencia, pero no modificará el historial existente.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reportes -->
+                    <div class="faq-section" data-category="reportes">
+                        <h4 class="section-title"><i class="fas fa-chart-bar me-2"></i>Reportes</h4>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqP1">
+                                    ¿Cómo exporto los reportes?
+                                </button>
+                            </h2>
+                            <div id="faqP1" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Para exportar un reporte:
+                                    <ol>
+                                        <li>Selecciona el tipo de reporte que deseas</li>
+                                        <li>Aplica los filtros necesarios</li>
+                                        <li>Haz clic en el botón "Exportar"</li>
+                                        <li>Elige el formato de exportación (Excel o PDF)</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqP2">
+                                    ¿Qué tipos de reportes están disponibles?
+                                </button>
+                            </h2>
+                            <div id="faqP2" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    El sistema ofrece varios tipos de reportes:
+                                    <ul>
+                                        <li>Informe Diario: Registro detallado de entradas y salidas</li>
+                                        <li>Asistencia por Departamento: Estadísticas grupales</li>
+                                        <li>Reporte de Puntualidad: Análisis de tardanzas</li>
+                                        <li>Horas Trabajadas: Cálculo de tiempo laboral</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqP3">
+                                    ¿Cómo filtro la información en los reportes?
+                                </button>
+                            </h2>
+                            <div id="faqP3" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Puedes filtrar los reportes usando:
+                                    <ul>
+                                        <li>Rango de fechas</li>
+                                        <li>Departamento específico</li>
+                                        <li>Empleado individual</li>
+                                        <li>Estado de asistencia</li>
+                                    </ul>
+                                    Los filtros se pueden combinar para obtener información más específica.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqP4">
+                                    ¿Los reportes se actualizan en tiempo real?
+                                </button>
+                            </h2>
+                            <div id="faqP4" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Sí, los reportes se actualizan automáticamente cuando:
+                                    <ul>
+                                        <li>Se registra una nueva entrada o salida</li>
+                                        <li>Se modifica información de usuarios</li>
+                                        <li>Se realizan cambios en los departamentos</li>
+                                    </ul>
+                                    También puedes actualizar manualmente usando el botón "Generar Reporte".
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="usuarios-acceso-config" class="container mt-4" style="display: none;">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">
+                    <i class="fas fa-user-shield me-2"></i>Gestión de Usuarios de Acceso
+                </h3>
+                <button class="btn btn-light" id="crearUsuarioAcceso">
+                    <i class="fas fa-user-plus me-2"></i>Nuevo Usuario
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cédula</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usuariosAccesoTableBody">
+                            <!-- Los usuarios se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Botón de retorno a home -->
+        <button id="volverHomeUsuariosAcceso" class="btn btn-primary btn-return">
+            <i class="fas fa-home"></i>
+        </button>
+    </div>
+
+    <!-- Modal para crear usuario de acceso -->
+    <div class="modal fade" id="crearUsuarioAccesoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-plus me-2"></i>Crear Usuario de Acceso
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="crearUsuarioAccesoForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nuevoUsuarioAccesoNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Cédula</label>
+                            <input type="text" class="form-control" id="nuevoUsuarioAccesoCedula" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Rol</label>
+                            <select class="form-select" id="nuevoUsuarioAccesoRol" required>
+                                <option value="">Seleccione un rol</option>
+                                <option value="empleado">Empleado</option>
+                                <option value="administrador">Administrador</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="nuevoUsuarioAccesoPassword" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibilityNuevo()">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="guardarNuevoUsuarioAccesoBtn">Crear Usuario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar usuario de acceso -->
+    <div class="modal fade" id="editarUsuarioAccesoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-edit me-2"></i>Editar Usuario de Acceso
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editarUsuarioAccesoForm">
+                        <input type="hidden" id="editUsuarioAccesoId">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="editUsuarioAccesoNombre" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Cédula</label>
+                            <input type="text" class="form-control" id="editUsuarioAccesoCedula" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Rol</label>
+                            <select class="form-select" id="editUsuarioAccesoRol">
+                                <option value="empleado">Empleado</option>
+                                <option value="administrador">Administrador</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Estado</label>
+                            <select class="form-select" id="editUsuarioAccesoEstado">
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nueva Contraseña (dejar en blanco para mantener la actual)</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="editUsuarioAccesoPassword">
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibilityEdit()">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="guardarUsuarioAccesoBtn">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js/dist/face-api.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode.js/qrcode.min.js"></script>
+    <script defer src="script.js"></script>
+
+    <!-- Agregar esto justo antes del cierre del body -->
+    <div class="modal fade" id="cameraModal" tabindex="-1" aria-labelledby="cameraModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cameraModalLabel">Tomar Foto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <video id="cameraFeed" autoplay playsinline></video>
+            <canvas id="photoCanvas" style="display:none;"></canvas>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="capturePhotoBtn">Capturar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para Importación Masiva -->
+    <div class="modal fade" id="importacionModal" tabindex="-1" aria-labelledby="importacionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="importacionModalLabel">
+                        <i class="fas fa-file-import me-2"></i>Importación Masiva de Usuarios
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="import-steps">
+                        <div class="step active" id="step1">
+                            <h6 class="step-title">
+                                <span class="step-number">1</span>
+                                Descargar Plantilla
+                            </h6>
+                            <p class="text-muted">Descarga la plantilla Excel con los departamentos actualizados</p>
+                            <button class="btn btn-outline-primary" id="descargarPlantilla">
+                                <i class="fas fa-download me-2"></i>Descargar Plantilla
+                            </button>
+                        </div>
+                        <div class="step" id="step2">
+                            <h6 class="step-title">
+                                <span class="step-number">2</span>
+                                Preparar Archivos
+                            </h6>
+                            <p class="text-muted">Completa la plantilla y prepara las imágenes en una carpeta</p>
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Las imágenes deben tener el mismo nombre que la columna "NOMBRE_ARCHIVO" en el Excel
+                            </div>
+                        </div>
+                        <div class="step" id="step3">
+                            <h6 class="step-title">
+                                <span class="step-number">3</span>
+                                Subir Archivos
+                            </h6>
+                            <div class="mb-3">
+                                <label class="form-label">Archivo Excel</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="excelFile" accept=".xlsx,.xls">
+                                    <label class="input-group-text" for="excelFile">
+                                        <i class="fas fa-file-excel"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Carpeta de Imágenes</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="imageFolder" webkitdirectory directory multiple>
+                                    <label class="input-group-text" for="imageFolder">
+                                        <i class="fas fa-folder"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="import-progress" style="display: none;">
+                        <div class="progress mb-3">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                        </div>
+                        <div class="import-status">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Procesando usuarios...</span>
+                                <span class="progress-text">0/0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="import-results" style="display: none;">
+                        <div class="alert alert-success">
+                            <h6><i class="fas fa-check-circle me-2"></i>Importación Completada</h6>
+                            <p class="mb-0">Se importaron exitosamente <span class="success-count">0</span> usuarios</p>
+                        </div>
+                        <div class="alert alert-warning" style="display: none;">
+                            <h6><i class="fas fa-exclamation-triangle me-2"></i>Advertencias</h6>
+                            <ul class="warning-list mb-0"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Cerrar
+                    </button>
+                    <button type="button" class="btn btn-primary" id="iniciarImportacion">
+                        <i class="fas fa-upload me-2"></i>Iniciar Importación
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregar antes de los scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer mt-4">
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright text-center">
+                    © <span id="currentYear"></span> Todos los derechos reservados | Creado por <a href="https://ciscodedev.netlify.app/" target="_blank" class="text-primary">Ciscode</a>
+                </div>
+                <div class="youtube-btn-container text-center">
+                    <a href="https://www.youtube.com/@Ciscodedev" target="_blank" class="btn btn-youtube">
+                        <i class="fab fa-youtube me-2"></i>Suscríbete
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Eliminar cualquier otro div de alerta o mensaje personalizado -->
+
+    <!-- Modal de Perfil -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="profileModalLabel">
+                        <i class="fas fa-user-circle me-2"></i>Perfil de Usuario
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="profileForm">
+                        <div class="mb-3">
+                            <label for="profileNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="profileNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profileCedula" class="form-label">Cédula</label>
+                            <input type="text" class="form-control" id="profileCedula" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profilePassword" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="profilePassword">
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">Dejar en blanco para mantener la contraseña actual</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveProfile">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Actualizar año automáticamente
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearElement = document.getElementById('currentYear');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>
